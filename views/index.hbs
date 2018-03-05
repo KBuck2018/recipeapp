@@ -1,1 +1,8 @@
-<h1>welcome</h1>
+<ol>
+    {{#each recipes}}
+    <li>
+        <a href="/recipes/{{this.id}}">{{this.title}}</a>
+        <p>{{this.ingredients}}</p>
+    </li>
+    {{/each}}
+</ol>

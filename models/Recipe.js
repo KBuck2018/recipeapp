@@ -1,15 +1,12 @@
 const mongoose = require("../db/connection");
 const recipeSchema = new mongoose.Schema({
   title: {
-    //uses string class thus capital S.
-    type: String,
-    required: true
+    type: String
   },
-  url: {
-    type: String,
-    required: true
+  href: {
+    type: String
   },
-  ingredients: [String]
+  ingredients: String
 });
 //constructs the model
 const Recipe = mongoose.model("recipe", recipeSchema);

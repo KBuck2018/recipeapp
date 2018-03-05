@@ -1,0 +1,17 @@
+ {{!-- on the new page, creates a form that will link back to the /controllers page and update --}}
+<form action="/recipes/new" method="POST">
+    <p>
+        <label for="title">Enter Title</label>
+        <input type="text" name="title">
+    </p>
+    <p>
+        <label for="href">Enter the url</label>
+        <input type="text" name="href">
+    </p>
+    <p>
+        <label for="ingredients">Enter the ingredients</label>
+        <input type="text" name="ingredients">
+    </p>
+
+    <input type="submit" value="Create">
+</form>
