@@ -20,11 +20,13 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "connect-flash": "^0.1.1",
+    "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "hbs": "^4.0.1",
+    "materialize-css": "^0.100.2",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.8",
     "morgan": "^1.9.0",

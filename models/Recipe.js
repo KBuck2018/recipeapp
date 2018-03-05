@@ -1,4 +1,5 @@
 const mongoose = require("../db/connection");
+
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String
