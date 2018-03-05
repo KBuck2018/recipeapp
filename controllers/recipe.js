@@ -35,7 +35,7 @@ router.get("/edit/:id", (req, res) => {
 //updates the specific information on the specified datafile
 router.put("/:id", (req, res) => {
   Recipe.findOneAndUpdate({ _id: req.params.id }, req.body).then(recipe => {
-    res.redirect("/recipes");
+    res.redirect("/");
   });
 });
 
