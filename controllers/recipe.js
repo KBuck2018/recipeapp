@@ -26,4 +26,24 @@ router.post("/", (req, res) => {
   });
 });
 
+// takes the user to the edit page
+router.get("/edit/:id", (req, res) => {
+  Recipe.findOne({ _id: req.params.id }).then(recipe => {
+    res.render("recipe/edit", recipe); //
+  });
+});
+//updates the specific information on the specified datafile
+router.put("/:id", (req, res) => {
+  Recipe.findOneAndUpdate({ _id: req.params.id }, req.body).then(recipe => {
+    res.redirect("/recipes");
+  });
+});
+
+//deletes specific datafile
+router.delete("/:id", (req, res) => {
+  Recipe.findOneAndRemove({ _id: req.params.id }).then(recipe => {
+    res.redirect("/");
+  });
+});
+
 module.exports = router;
