@@ -8,17 +8,14 @@ var passport = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
 var Recipe = require("./models/Recipe");
-const recipe = require("./controllers/recipe");
+var recipe = require("./controllers/recipe");
+require("./config/passport")(passport);
 
 app.use("/recipes", recipe);
-
-require("./config/passport")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(bodyParser());
 app.use(
   session({
@@ -27,24 +24,20 @@ app.use(
     resave: false
   })
 );
-
 app.use(flash());
 app.use(methodOverride("_method"));
-
-app.get("/", (req, res) => {
-  Recipe.find({}).then(recipes => {
-    res.render("index", { recipes });
-  });
-});
-
+app.use("/user", require("./controllers/user"));
 app.use((req, res, next) => {
   res.currentUser = req.user;
   res.locals.currentUser = req.user;
   next();
 });
 
-//This is a reference to the controller.js in controllers, ensures functionality of the MVC
-
+app.get("/", (req, res) => {
+  Recipe.find({}).then(recipes => {
+    res.render("index", { recipes });
+  });
+});
 app.set("port", process.env.PORT || 3001);
 
 app.listen(app.get("port"), () => {

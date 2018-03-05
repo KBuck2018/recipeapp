@@ -1,19 +1,18 @@
 var express = require("express");
-var router = express.router();
+var router = express.Router();
 var passport = require("passport");
 var User = require("../models/User");
 var Recipe = require("../models/Recipe");
 
-router.get("user/login", (req, res) => {
-  res.send("hello");
-  //   res.render("/user/login", { message: req.flash("userNameTaken") });
-});
-
 router.get("/signup", (req, res) => {
-  res.render("/user/signup", { message: req.flash("userNameTaken") });
+  res.render("user/signup", { message: req.flash("userNameTaken") });
 });
 
-router.post("/", (req, res) => {
+router.get("/login", (req, res) => {
+  res.render("user/login", { message: req.flash("userNameTaken") });
+});
+
+router.post("user/signup", (req, res) => {
   var signup = passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",
@@ -22,7 +21,7 @@ router.post("/", (req, res) => {
   return signup(req, res);
 });
 
-router.post("/", (req, res) => {
+router.post("user/login", (req, res) => {
   var login = passport.authenticate("local-login", {
     successRedirect: "/",
     failureRedirect: "/login",
