@@ -1,17 +1,19 @@
 //This is the requirements section, be sure to load all of these NPM's can just use npm i if there are already dependencies
 var express = require("express");
 var app = express();
+
 var bodyParser = require("body-parser");
 var hbs = require("hbs");
 var methodOverride = require("method-override");
 var passport = require("passport");
 var session = require("express-session");
+
 var flash = require("connect-flash");
 var Recipe = require("./models/Recipe");
 var recipe = require("./controllers/recipe");
+
 require("./config/passport")(passport);
 
-app.use("/recipes", recipe);
 app.use(passport.initialize());
 app.use(passport.session());
 app.set("view engine", "hbs");
@@ -38,6 +40,8 @@ app.get("/", (req, res) => {
     res.render("index", { recipes });
   });
 });
+app.use("/recipes", recipe);
+
 app.set("port", process.env.PORT || 3001);
 
 app.listen(app.get("port"), () => {
