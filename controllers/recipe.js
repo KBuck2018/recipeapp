@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 // takes the user to the edit page
 router.get("/edit/:id", (req, res) => {
   Recipe.findOne({ _id: req.params.id }).then(recipe => {
-    res.render("recipe/edit", recipe); //
+    res.render("recipe/edit", recipe);
   });
 });
 //updates the specific information on the specified datafile
