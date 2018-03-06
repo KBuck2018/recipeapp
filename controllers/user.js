@@ -12,7 +12,7 @@ router.get("/login", (req, res) => {
   res.render("user/login", { message: req.flash("userNameTaken") });
 });
 
-router.post("user/signup", (req, res) => {
+router.post("/", (req, res) => {
   var signup = passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",
@@ -21,7 +21,7 @@ router.post("user/signup", (req, res) => {
   return signup(req, res);
 });
 
-router.post("user/login", (req, res) => {
+router.post("/", (req, res) => {
   var login = passport.authenticate("local-login", {
     successRedirect: "/",
     failureRedirect: "/login",
