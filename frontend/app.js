@@ -1,6 +1,6 @@
-const serverUrl = "http://localhost:3001/recipes";
+const serverUrl = "http://localhost:3001";
 
-let recipesList = document.body.querySelector("ul");
+let recipesList = document.body.querySelector("main ul");
 
 function loadData() {
   recipesList.innerHTML = "";
@@ -12,7 +12,7 @@ function loadData() {
       recipes.forEach(recipes => {
         const listItemContainer = document.createElement("li");
         const listItemLink = document.createElement("a");
-        listItemLink.setAttribute("href", recipes.href);
+        listItemLink.setAttribute("href", recipes.url);
         listItemLink.innerHTML = recipes.title;
         listItemContainer.appendChild(listItemLink);
 

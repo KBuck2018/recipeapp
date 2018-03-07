@@ -8,6 +8,8 @@ var hbs = require("hbs");
 var methodOverride = require("method-override");
 var passport = require("passport");
 var session = require("express-session");
+var cors = require("cors");
+app.use("cors");
 
 var flash = require("connect-flash");
 var Recipe = require("./models/Recipe");
@@ -38,13 +40,13 @@ app.use((req, res, next) => {
   next();
 });
 
-require("./config/passport")(passport);
+app.use(parer.json());
 
 app.get("/", (req, res) => {
-  Recipe.find({}).then(recipes => {
-    res.render("index", { recipes });
-  });
+  Recipe.find({}).then(recipes => res.json(recipes));
 });
+
+require("./config/passport")(passport);
 
 app.set("port", process.env.PORT || 3001);
 
