@@ -10,7 +10,7 @@ var passport = require("passport");
 require("./config/passport")(passport);
 var session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static("public"));
@@ -39,7 +39,10 @@ app.get("/", (req, res) => {
   });
 });
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
+  console.log("retry" + res.req.body.toString());
+  console.log(`req.body: ${req.body}`);
+  console.log(res.user);
+  res.locals.currentUser = res.user;
   next();
 });
 app.use("/recipes", recipe);

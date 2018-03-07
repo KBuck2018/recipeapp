@@ -1,15 +1,13 @@
 {{!-- displays the information of the specified piece of data and adds buttons to input edit and delete --}}
-<a href="recipes/new">Create a New Recipe</a>
-
-<h4>{{title}}</h4>
-<img src="{{thumbnail}}">
-<p>URL:
-    <a href="{{href}}">{{href}}</a>
-</p>
-<p>{{ingredients}}</p>
-
-
 <a href="edit/{{id}}">Edit This Post</a>
 <form action="/recipes/{{id}}?_method=delete" method="POST">
     <input type="submit" value="delete">
 </form>
+<h4>{{title}}</h4>
+<div class="show-container">
+    <img src="{{thumbnail}}">
+    <p>URL:
+        <a href="{{href}}">{{href}}</a>
+    </p>
+    <p>Ingredients needed for this recipe are: {{ingredients}}</p>
+</div>
