@@ -8,6 +8,7 @@ var hbs = require("hbs");
 var methodOverride = require("method-override");
 var passport = require("passport");
 var session = require("express-session");
+app.use(express.static("public"));
 
 var flash = require("connect-flash");
 var Recipe = require("./models/Recipe");
