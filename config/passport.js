@@ -15,12 +15,12 @@ module.exports = function(passport) {
     "local-signup",
     new LocalStrategy(
       {
-        userNameField: "userName",
+        usernameField: "userName",
         passwordField: "password",
         passReqToCallback: true
       },
       function(req, userName, password, callback) {
-        User.findOne({ "local.userName": userName })
+        User.findOne({ "local.userName": userName }, functon(err, user))
           .then(user => {
             if (user) {
               return callback(
@@ -32,10 +32,13 @@ module.exports = function(passport) {
               var newUser = new User();
               newUser.local.userName = userName;
               newUser.local.password = newUser.encrypt(password);
-
               newUser.save(err => {
                 if (err) throw err;
-                return callback(null, newUser);
+                return callback(
+                  null,
+                  newUser,
+                  req.flash("thisworked", "this is working")
+                );
               });
             }
           })
@@ -48,7 +51,7 @@ module.exports = function(passport) {
     "local-login",
     new LocalStrategy(
       {
-        userNameField: "userName",
+        usernameField: "userName",
         passwordField: "password",
         passReqToCallback: true
       },

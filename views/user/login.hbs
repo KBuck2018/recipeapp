@@ -1,1 +1,19 @@
-<h1>Hello</h1>
+<section class="row">
+    <h4>Log In:</h4>
+
+    {{#if message}}
+    <p class="alert">{{message}}</p>
+    {{/if}}
+
+    <form action="" method="POST" class="auth-form">
+        <p class="input-field">
+            <input type="text" name="userName" placeholder="User Name">
+        </p>
+        <p class="input-field">
+            <input type="password" name="password" placeholder="Password">
+        </p>
+        <p class="input-field">
+            <input type="submit" value="Log In" class="btn waves-effect waves-light">
+        </p>
+    </form>
+</section>

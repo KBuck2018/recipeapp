@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
 const Recipe = require("../models/Recipe");
+var url = "http://www.recipepuppy.com/?i=&q=";
 
+var recipeSearch = [];
 // when clicked to create something new, taked you to page to add new data
 router.get("/new", (req, res) => {
   res.render("recipe/new"); //subDocuments should be renamed as an actual directory name relevant to info put in

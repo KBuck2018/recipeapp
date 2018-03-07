@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 var passport = require("passport");
 var User = require("../models/User");
 var Recipe = require("../models/Recipe");
@@ -8,23 +10,24 @@ router.get("/signup", (req, res) => {
   res.render("user/signup", { message: req.flash("userNameTaken") });
 });
 
-router.get("/login", (req, res) => {
-  res.render("user/login", { message: req.flash("userNameTaken") });
-});
-
-router.post("/", (req, res) => {
+router.post("/signup", (req, res) => {
+  console.log(req.body);
   var signup = passport.authenticate("local-signup", {
     successRedirect: "/",
-    failureRedirect: "/signup",
+    failureRedirect: "/user/login",
     failureFlash: true
   });
   return signup(req, res);
 });
 
-router.post("/", (req, res) => {
+router.get("/login", (req, res) => {
+  res.render("user/login", { message: req.flash("userNameTaken") });
+});
+
+router.post("/login", (req, res) => {
   var login = passport.authenticate("local-login", {
     successRedirect: "/",
-    failureRedirect: "/login",
+    failureRedirect: "/user/login",
     failureFlash: true
   });
   return login(req, res);

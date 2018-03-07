@@ -1,8 +1,12 @@
 <h1>SignUp</h1>
 
-<form action="" method="POST" class="auth-form">
+{{#if message}}
+<p class="alert">{{message}}</p>
+{{/if}}
+
+<form action="/user/signup" method="POST" class="auth-form">
     <p class="input-field">
-        <input type="userName" name="userName" placeholder="UserName">
+        <input type="text" name="userName" placeholder="User Name">
     </p>
 
     <p class="input-field">
