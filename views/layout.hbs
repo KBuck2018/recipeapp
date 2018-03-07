@@ -17,6 +17,11 @@
             margin-bottom: 12px;
             color: black;
         }
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
@@ -34,17 +39,23 @@
                     <a href="/recipes/new">New Recipe</a>
                 </li>
                 <li>
-                    <a href="/user/signup">Signup</a>
-                </li>
-                <li>
-                    <a href="/user/login">Login</a>
-                </li>
-                <form id="search">
-                    <input type="text" id="myInput" placeholder="Search by ingredients">
-                </form>
+                    {{#if currentUser}}
+                    <li>
+                        <a href="/user/logout">Logout {{currentUser.local.email}}</a>
+                    </li>
+                    {{else}}
+                    <li>
+                        <a href="/user/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/user/signup">Signup</a>
+                    </li>
+                    {{/if}}
             </ul>
         </div>
     </nav>
+
+
     {{{body}}}
     <script src="../../app.js"></script>
 </body>
