@@ -55,19 +55,18 @@
                 <li>
                     <a href="/recipes/new">New Recipe</a>
                 </li>
+                {{#if currentUser}}
                 <li>
-                    {{#if currentUser}}
-                    <li>
-                        <a href="/user/logout">Logout {{currentUser.local.email}}</a>
-                    </li>
-                    {{else}}
-                    <li>
-                        <a href="/user/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="/user/signup">Signup</a>
-                    </li>
-                    {{/if}}
+                    <a href="/user/logout">Logout {{currentUser.local.email}}</a>
+                </li>
+                {{else}}
+                <li>
+                    <a href="/user/login">Login</a>
+                </li>
+                <li>
+                    <a href="/user/signup">Signup</a>
+                </li>
+                {{/if}}
             </ul>
         </div>
     </nav>

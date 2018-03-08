@@ -65,6 +65,7 @@ module.exports = function(passport) {
               req.flash("loginError", "No user found")
             );
           }
+
           if (!user.validPassword(password)) {
             return callback(
               null,
@@ -72,6 +73,7 @@ module.exports = function(passport) {
               req.flash("loginError", "Ooops, wrong password")
             );
           }
+
           return callback(null, user);
         });
       }
