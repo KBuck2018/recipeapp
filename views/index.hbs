@@ -1,9 +1,9 @@
 <h5>Top Ten Recipes</h5>
-<ol>
+<div class="container">
     {{#each recipes}}
-    <li>
-        <a href="/recipes/{{this.id}}">{{this.title}}</a>
-        <p>{{this.ingredients}}</p>
-    </li>
+    <div>
+        <a id="recipe" href="/recipes/{{this.id}}">{{this.title}}</a>
+        <p>Ingredients: {{this.ingredients}}</p>
+    </div>
     {{/each}}
-</ol>
+</div>

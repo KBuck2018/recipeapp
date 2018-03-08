@@ -1,50 +1,54 @@
 //This is the requirements section, be sure to load all of these NPM's can just use npm i if there are already dependencies
-var express = require("express");
-
-var app = express();
+const express = require("express");
+const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-var bodyParser = require("body-parser");
-var hbs = require("hbs");
-var methodOverride = require("method-override");
-var passport = require("passport");
-var session = require("express-session");
+const bodyParser = require("body-parser");
+const hbs = require("hbs");
+const methodOverride = require("method-override");
+const passport = require("passport");
+const session = require("express-session");
+const flash = require("connect-flash");
 
-var flash = require("connect-flash");
 var Recipe = require("./models/Recipe");
 var recipe = require("./controllers/recipe");
 var userController = require("./controllers/user");
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.set("view engine", "hbs");
+var app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(express.static("public"));
+app.set("view engine", "hbs");
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
+app.use(cookieParser());
 app.use(
   session({
     secret: "IHopeThisWorks",
-    saveUninitialized: true,
-    resave: false
+    resave: true,
+    saveUninitialized: true
   })
 );
 app.use(flash());
-app.use(methodOverride("_method"));
-app.use("/recipes", recipe);
-app.use("/user", userController);
-app.use(morgan("dev"));
+
+require("./config/passport")(passport);
+app.use(passport.initialize());
 app.use(passport.session());
-app.use((req, res, next) => {
-  // res.currentUser = req.user;
+
+app.use(function(req, res, next) {
+  console.log("current user: ", req.user);
   res.locals.currentUser = req.user;
   next();
 });
-
-require("./config/passport")(passport);
 
 app.get("/", (req, res) => {
   Recipe.find({}).then(recipes => {
     res.render("index", { recipes });
   });
 });
+
+app.use("/recipes", recipe);
+app.use("/user", userController);
 
 app.set("port", process.env.PORT || 3001);
 

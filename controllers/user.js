@@ -4,24 +4,23 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var passport = require("passport");
 var User = require("../models/User");
-var Recipe = require("../models/Recipe");
+// var Recipe = require("../models/Recipe");
 
 router.get("/signup", (req, res) => {
-  res.render("user/signup", { message: req.flash("userNameTaken") });
+  res.render("user/signup", { message: req.flash("usernameFlag") });
 });
 
 router.post("/signup", (req, res) => {
-  console.log(req.body);
   var signup = passport.authenticate("local-signup", {
     successRedirect: "/",
-    failureRedirect: "/user/login",
+    failureRedirect: "/user/signup",
     failureFlash: true
   });
   return signup(req, res);
 });
 
 router.get("/login", (req, res) => {
-  res.render("user/login", { message: req.flash("userNameTaken") });
+  res.render("user/login", { message: req.flash("loginError") });
 });
 
 router.post("/login", (req, res) => {
@@ -30,6 +29,7 @@ router.post("/login", (req, res) => {
     failureRedirect: "/user/login",
     failureFlash: true
   });
+
   return login(req, res);
 });
 

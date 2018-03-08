@@ -6,6 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recipe App</title>
+    <style>
+        #myInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            color: black;
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
+
+        h5 {
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .show-container p {
+            display: inline;
+
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 
@@ -21,19 +55,25 @@
                 <li>
                     <a href="/recipes/new">New Recipe</a>
                 </li>
+                {{#if currentUser}}
                 <li>
-                    <a href="/user/signup">Signup</a>
+                    <a href="/user/logout">Logout {{currentUser.local.email}}</a>
                 </li>
+                {{else}}
                 <li>
                     <a href="/user/login">Login</a>
                 </li>
                 <li>
-                    <a href="/recipes/search">Search</a>
+                    <a href="/user/signup">Signup</a>
                 </li>
+                {{/if}}
             </ul>
         </div>
     </nav>
+
+
     {{{body}}}
+    <script src="../../app.js"></script>
 </body>
 
 </html>

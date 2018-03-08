@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const User = mongoose.Schema({
   local: {
-    userName: String,
+    email: String,
     password: String
   }
 });
