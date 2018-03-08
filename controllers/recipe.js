@@ -46,9 +46,11 @@ router.put("/:id", (req, res) => {
 
 //deletes specific datafile
 router.delete("/:id", (req, res) => {
-  Recipe.findOneAndRemove({ _id: req.params.id }).then(recipe => {
-    res.redirect("/");
-  });
+  if (req.user) {
+    Recipe.findOneAndRemove({ _id: req.params.id }).then(recipe => {
+      res.redirect("/");
+    });
+  }
 });
 
 module.exports = router;
