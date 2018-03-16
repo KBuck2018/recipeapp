@@ -1,4 +1,4 @@
-const mongoose = require("../db/connection");
+const mongoose = require("./connection.js");
 
 const recipeSchema = new mongoose.Schema({
   title: {
@@ -11,6 +11,6 @@ const recipeSchema = new mongoose.Schema({
   thumbnail: String
 });
 //constructs the model
-const Recipe = mongoose.model("recipe", recipeSchema);
+mongoose.model("recipe", recipeSchema);
 //exports the model
-module.exports = Recipe;
+module.exports = mongoose;
