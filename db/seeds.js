@@ -1,5 +1,6 @@
 const mongoose = require("./Models.js");
-const translationData = require("./seeds.json");
+const Recipe = mongoose.model("Recipe");
+const data = require("./seeds.json");
 
 //This clears the collection and then adds the data to the database
 Recipe.remove({})

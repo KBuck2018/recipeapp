@@ -1,8 +1,11 @@
 const express = require("express");
 const parser = require("body-parser");
 const mongoose = require("./db/Models.js");
+const Recipe = mongoose.model("Recipe");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 app.set("port", process.env.PORT || 3001);
 app.use(parser.json());

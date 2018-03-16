@@ -1,6 +1,6 @@
 const mongoose = require("./connection.js");
 
-const recipeSchema = new mongoose.Schema({
+const Recipe = new mongoose.Schema({
   title: {
     type: String
   },
@@ -11,6 +11,6 @@ const recipeSchema = new mongoose.Schema({
   thumbnail: String
 });
 //constructs the model
-mongoose.model("recipe", recipeSchema);
+mongoose.model("Recipe", Recipe);
 //exports the model
 module.exports = mongoose;

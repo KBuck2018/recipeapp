@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/recipe", { useMongoClient: true });
+mongoose.connect("mongodb://localhost/recipe");
 
 module.exports = mongoose;
